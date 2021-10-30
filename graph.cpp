@@ -1,3 +1,5 @@
+// class for undirected graph
+
 #include<bits/stdc++.h>
 using namespace std;
 class Graph
