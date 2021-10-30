@@ -30,7 +30,7 @@ class Graph
 	}
 	int removeEdge(int u,int v)//returns weight of deleted edge
 	{
-		int w;
+		int w=1;//default weight
 		for(auto itr=adj[u].begin();itr!=adj[u].end();itr++)
 			if(itr->first==v)
 			{
@@ -57,4 +57,13 @@ class Graph
 			cout<<endl;
 		}
 	}
+	void DFS(int u,bool visited[])
+{
+	visited[u]=true;
+	for(pair<int,int> p:adj[u])
+	{
+		if(!visited[p.first])
+			DFS(p.first,visited);
+	}
+}
 };

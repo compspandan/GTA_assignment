@@ -18,15 +18,7 @@ int doesEulerPathExist(Graph &g)
 	else
 		return -1;
 }
-void DFS(Graph &g,int u,bool visited[])
-{
-	visited[u]=true;
-	for(pair<int,int> p:g.adj[u])
-	{
-		if(!visited[p.first])
-			DFS(g,p.first,visited);
-	}
-}
+
 // 
 bool isEdgeValid(Graph &g,int u,int v)
 {
@@ -34,11 +26,11 @@ bool isEdgeValid(Graph &g,int u,int v)
 		return true;
 	bool visited[g.N];
 	memset(visited,false,sizeof(visited));
-	DFS(g,u,visited);
+	g.DFS(u,visited);
 	int count1 = count(visited,visited+g.N,true);
 	int w = g.removeEdge(u,v);
 	memset(visited,false,sizeof(visited));
-	DFS(g,u,visited);
+	g.DFS(u,visited);
 	int count2 = count(visited,visited+g.N,true);
 	g.addEdge(u,v,w);
 	return (count2<count1)?false:true;
