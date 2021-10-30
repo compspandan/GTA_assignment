@@ -30,8 +30,6 @@ void DFS(Graph &g,int u,bool visited[])
 // 
 bool isEdgeValid(Graph &g,int u,int v)
 {
-	if(g.adj[u].size()==0)
-		return false;
 	if(g.adj[u].size()==1)
 		return true;
 	bool visited[g.N];
@@ -47,8 +45,9 @@ bool isEdgeValid(Graph &g,int u,int v)
 }
 void findEulerPath(Graph &g, int u)
 {
-	for(pair<int,int> p:g.adj[u])
+	for(int i=0;i<g.adj[u].size();i++)
 	{
+		pair<int,int> p = g.adj[u][i];
 		int v = p.first;
 		if(isEdgeValid(g,u,v))
 		{
