@@ -23,6 +23,15 @@ class Graph
 			addEdge(u,v,w);
 		}
 	}
+	void initBipartiteGraph()
+	{
+		for(int i=0;i<E;i++)
+		{
+			int u,v,w;
+			cin>>u>>v>>w;
+			adj[u].push_back({v,w});
+		}	
+	}
 	void addEdge(int u,int v,int w)
 	{
 		adj[u].push_back({v,w});
