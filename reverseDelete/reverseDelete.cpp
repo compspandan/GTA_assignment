@@ -1,4 +1,4 @@
-#include "graph.cpp"
+#include "../graph.cpp"
 vector<pair<int,pair<int,int>>> edges;
 void sortEdges(Graph &g)
 {
@@ -26,6 +26,8 @@ bool isGraphDisconnected(Graph &g)
 }
 int main()
 {
+	freopen("revdel.txt", "r", stdin);
+    freopen("revdel_output.txt", "w", stdout);
 	int N,E;
 	cin>>N;
 	cin>>E;

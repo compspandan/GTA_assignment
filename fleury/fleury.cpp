@@ -1,4 +1,4 @@
-#include "graph.cpp"
+#include "../graph.cpp"
 using namespace std;
 int doesEulerPathExist(Graph &g)
 {
@@ -51,6 +51,8 @@ void findEulerPath(Graph &g, int u)
 }
 int main()
 {
+	freopen("fleury.txt", "r", stdin);
+    freopen("fleury_output.txt", "w", stdout);
 	int N,E;
 	cin>>N;
 	cin>>E;

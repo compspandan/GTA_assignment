@@ -1,4 +1,4 @@
-#include "graph.cpp"
+#include "../graph.cpp"
 using namespace std;
 int M,N,E;
 bool bpm(Graph &g,int u,bool visited[], int match[])
@@ -36,6 +36,8 @@ int bipartiteMatch(Graph &g)
 }
 int main()
 {
+	freopen("bpm.txt", "r", stdin);
+    freopen("bpm_output.txt", "w", stdout);
 	cin>>M>>N;
 	cin>>E;
 	Graph g(max(M,N),E);

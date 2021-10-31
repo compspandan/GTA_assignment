@@ -1,17 +1,6 @@
-#include "graph.cpp"
+#include "../graph.cpp"
 using namespace std;
 int color=0;
-void findDegree(Graph &g, vector<pair<int,int>> &deg)
-{
-	for(int i=0;i<g.N;i++)
-	{
-		int count=0;
-		for(pair<int,int> p:g.adj[i])
-			count++;
-		deg.push_back({count,i});
-	}
-	sort(deg.begin(),deg.end(),greater<pair<int,int>>());
-}
 void welshPowell(Graph &g, int colors[], vector<pair<int,int>> deg)
 {
 	while(deg.size()>0)
@@ -33,6 +22,7 @@ void welshPowell(Graph &g, int colors[], vector<pair<int,int>> deg)
 			{
 				colors[v]=color;
 				deg.erase(deg.begin()+i);
+				i--;
 			}
 		}
 		color++;
@@ -40,13 +30,16 @@ void welshPowell(Graph &g, int colors[], vector<pair<int,int>> deg)
 }
 int main()
 {
+	freopen("welshPowell.txt", "r", stdin);
+    freopen("welshPowell_output.txt", "w", stdout);
 	int N,E;
 	cin>>N;
 	cin>>E;
 	Graph g(N,E);
 	g.initGraph();
 	vector<pair<int,int>> deg;
-	findDegree(g,deg);
+	g.findDegree(deg);
+	sort(deg.begin(),deg.end(),greater<pair<int,int>>());
 	int colors[g.N];
 	memset(colors,-1,sizeof(colors));
 	welshPowell(g,colors,deg);

@@ -1,4 +1,4 @@
-#include "graph.cpp"
+#include "../graph.cpp"
 vector<pair<int,pair<int,int>>> edges;
 struct components
 {
@@ -34,7 +34,9 @@ void uniteComps(components c[],int comp1, int comp2)
 }
 int main()
 {
-	int N,E;
+	freopen("boruvka.txt", "r", stdin);
+    freopen("boruvka_output.txt", "w", stdout);
+	int N,E,t=0;
 	cin>>N;
 	cin>>E;
 	Graph g(N,E);
@@ -77,9 +79,11 @@ int main()
 			if(comp1==comp2)
 				continue;
 			g.addEdge(u,v,w);
+			t+=w;
 			uniteComps(c,comp1,comp2);
 			comps--;
 		}
 	}
 	g.display();
+	cout<<"Total sum of weights in MST: "<<t<<endl;
 }

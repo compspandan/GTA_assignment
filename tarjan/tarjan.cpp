@@ -1,4 +1,4 @@
-#include "graph.cpp"
+#include "../graph.cpp"
 using namespace std;
 int Time = 0;
 void DFS(Graph &g, int u, bool visited[], int discTime[], int lowTime[], int par, bool isAP[])
@@ -42,6 +42,8 @@ void findArticulationPoints(Graph &g)
 }
 int main()
 {
+    freopen("tarjan.txt", "r", stdin);
+    freopen("tarjan_output.txt", "w", stdout);
 	int N,E;
 	cin>>N;
 	cin>>E;
