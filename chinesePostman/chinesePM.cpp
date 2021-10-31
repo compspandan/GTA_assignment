@@ -1,4 +1,4 @@
-#include "graph.cpp"
+#include "../graph.cpp"
 using namespace std;
 int doesEulerPathExist(Graph &g)
 {
@@ -121,17 +121,17 @@ int main()
 	vector<pair<int,int>> deg;
 	g.findDegree(deg);
 	findOddVertices(deg);
-	// if(deg.size()==0)
-	// {
-	// 	int start = doesEulerPathExist(g);
-	// 	if(start!=-1)
-	// 		findEulerPath(g,start);
-	// 	exit(0);
-	// }
+	if(deg.size()==0)
+	{
+		int start = doesEulerPathExist(g);
+		if(start!=-1)
+			findEulerPath(g,start);
+		exit(0);
+	}
 	findExactPairs(g,deg);
-	// int start = doesEulerPathExist(g);
-	// 	if(start!=-1)
-	// 		findEulerPath(g,start);	
-	// 	else
-	// 		cout<<"No Euler path or circuit exists"<<endl;
+	int start = doesEulerPathExist(g);
+		if(start!=-1)
+			findEulerPath(g,start);	
+		else
+			cout<<"No Euler path or circuit exists"<<endl;
 }
