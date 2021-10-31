@@ -1,0 +1,7 @@
+applicant: 2 -> job: 0
+applicant: 0 -> job: 1
+applicant: 3 -> job: 2
+applicant: 4 -> job: 3
+applicant: 1 -> job: 4
+applicant: 5 -> job: 5
+Maximum number of bipartite matchings possible are: 6

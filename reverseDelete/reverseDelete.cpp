@@ -26,7 +26,7 @@ bool isGraphDisconnected(Graph &g)
 }
 int main()
 {
-	freopen("revdel.txt", "r", stdin);
+	freopen("../input.txt", "r", stdin);
     freopen("revdel_output.txt", "w", stdout);
 	int N,E;
 	cin>>N;

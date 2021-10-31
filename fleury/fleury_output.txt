@@ -1,0 +1,1 @@
+No Euler path or circuit exists
