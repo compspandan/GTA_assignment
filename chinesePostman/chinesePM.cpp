@@ -131,7 +131,10 @@ int main()
 	findExactPairs(g,deg);
 	int start = doesEulerPathExist(g);
 		if(start!=-1)
+		{
+			cout<<"Euler circuit"<<endl;
 			findEulerPath(g,start);	
+		}
 		else
 			cout<<"No Euler path or circuit exists"<<endl;
 }

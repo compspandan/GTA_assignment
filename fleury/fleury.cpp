@@ -60,7 +60,10 @@ int main()
 	g.initGraph();
 	int start = doesEulerPathExist(g);
 	if(start!=-1)
+	{
+		cout<<"Euler path:"<<endl;
 		findEulerPath(g,start);
+	}
 	else
 		cout<<"No Euler path or circuit exists"<<endl;
 }

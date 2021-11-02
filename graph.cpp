@@ -103,7 +103,7 @@ class Graph
 		}
 		addPathEdges(parent[dest],dist,parent);
 		int w = abs(dist[parent[dest]] - dist[dest]);
-		// cout<<"adding"<<parent[dest]<<' '<<dest<<' '<<w<<endl;
+		cout<<"adding edge"<<parent[dest]<<"->"<<dest<<" weight:"<<w<<endl;
 		addEdge(parent[dest],dest,w);
 	}
 

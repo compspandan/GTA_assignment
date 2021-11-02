@@ -31,7 +31,7 @@ void welshPowell(Graph &g, int colors[], vector<pair<int,int>> deg)
 int main()
 {
 	// freopen("welshPowell.txt", "r", stdin);
-	freopen("../input.txt", "r", stdin);	
+	freopen("input.txt", "r", stdin);	
     freopen("welshPowell_output.txt", "w", stdout);
 	int N,E;
 	cin>>N;
