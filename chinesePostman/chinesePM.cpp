@@ -87,26 +87,26 @@ void findExactPairs(Graph &g, vector<pair<int,int>> &deg)
 		auto p = pairs[i];
 		auto e1 = edge[p.first];
 		auto e2 = edge[p.second];
-		cout<<e1.first<<','<<e1.second<<' '<<e2.first<<','<<e2.second<<endl;
+		// cout<<e1.first<<','<<e1.second<<' '<<e2.first<<','<<e2.second<<endl;
 		int sum=0;
-		if(g.dp[e1.first][e1.second]==-1)
-			g.dikstra(e1.first);
-		sum+=g.dp[e1.first][e1.second];
-
-		if(g.dp[e2.first][e2.second]==-1)
-			g.dikstra(e2.first);
-		sum+=g.dp[e2.first][e2.second];
-
+		// cout<<e1.first<<"->"<<e1.second<<' '<<g.dikstra(e1.first,e1.second)<<',';
+		sum += g.dikstra(e1.first,e1.second);
+		// cout<<e2.first<<"->"<<e2.second<<' '<<g.dikstra(e2.first,e2.second)<<"=>";	
+		sum+=g.dikstra(e2.first,e2.second);
+		// cout<<sum<<endl;
 		if(sum<min)
+		{
+			min=sum;
 			index=i;
+		}
 	}
 	if(index!=-1)
 	{
 		auto p = pairs[index];
 		auto e1 = edge[p.first];
 		auto e2 = edge[p.second];	
-		g.addPath(e1.first,e1.second);
-		g.addPath(e2.first,e2.second);
+		g.dikstra(e1.first,e1.second,true);
+		g.dikstra(e2.first,e2.second,true);
 	}
 }
 int main()
