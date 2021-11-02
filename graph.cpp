@@ -8,21 +8,11 @@ class Graph
 	int N;//no of vertices
 	int E;//no of edges
 	vector<pair<int,int>> *adj;
-	int **dp;
-	int **parent;
 	Graph(int N,int E)
 	{
 		this->N = N;
 		this->E = E;
 		adj = new vector<pair<int,int>>[N];
-		dp = new int*[N];
-		for(int i=0;i<N;i++)
-			dp[i]=new int[N];
-		memset(dp,-1,sizeof(dp));
-		parent = new int*[N];
-		for(int i=0;i<N;i++)
-			parent[i]=new int[N];
-		memset(parent,-1,sizeof(parent));
 	}
 	void initGraph()
 	{
@@ -96,15 +86,6 @@ class Graph
 		}
 	}
 
-	void recordDist(int dist[], int src)
-	{
-		for(int i=0;i<N;i++)
-		{
-			dp[src][i]=dist[i];
-			dp[i][src]=dist[i];
-		}
-	}
-
 	int minDistance(int dist[], bool sptSet[])
 	{
 		int min = INT_MAX, min_index;
@@ -114,36 +95,52 @@ class Graph
 		return min_index;
 	}
 
-	void addPath(int src,int dest)
+	void addPathEdges(int dest,int dist[],int parent[])
 	{
-		if (parent[src][dest] == - 1)//if src==dest
+		if (parent[dest] == - 1)//if src==dest
+		{
 			return;
-		addPath(src, parent[src][dest]);
-		// printf("%d ",dest);
-		addEdge(parent[src][dest],dest,dp[parent[src][dest]][dest]);
+		}
+		addPathEdges(parent[dest],dist,parent);
+		int w = abs(dist[parent[dest]] - dist[dest]);
+		// cout<<"adding"<<parent[dest]<<' '<<dest<<' '<<w<<endl;
+		addEdge(parent[dest],dest,w);
 	}
 
-	void dikstra(int src)
+	int dikstra(int src,int dest,bool addPath=false)
 	{
 		int dist[N];
-		memset(dist,INT_MAX,sizeof(dist));
-		dist[src]=0;
 		bool sptSet[N];
-		memset(sptSet,false,sizeof(sptSet));
-		parent[src][src]=-1;
+		int parent[N];
+		for(int i=0;i<N;i++)
+		{
+			dist[i]=INT_MAX;
+			sptSet[i] = false;
+			parent[i]=-1;
+		}
+		dist[src]=0;
+		parent[src]=-1;
 		for (int count = 0; count < N - 1; count++) {
 			int u = minDistance(dist, sptSet);
 			sptSet[u] = true;
+			if(u==dest)
+				break;
 			for (auto p:adj[u])
 			{
 				int v = p.first,w=p.second;
+				// cout<<sptSet[v]<<' '<<dist[u]<<' '<<dist[v]<<endl;
 				if (!sptSet[v] && dist[u] != INT_MAX && dist[u] + w < dist[v])
 				{
-					parent[src][v] = u;
+					parent[v] = u;
 					dist[v] = dist[u] + w;
 				}
 			}
 		}
-		recordDist(dist, src);
+		if(addPath)
+		{
+			// cout<<src<<' '<<dest<<endl;
+			addPathEdges(dest,dist,parent);
+		}
+		return dist[dest];
 	}
 };

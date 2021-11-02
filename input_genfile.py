@@ -6,7 +6,6 @@ print(N)
 E = int(sys.argv[2])
 print(E)
 W = int(sys.argv[3])
-seed(5)
 s = []
 for i in range(E):
 	u=randint(0,N-1)
