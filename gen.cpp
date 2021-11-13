@@ -157,6 +157,7 @@ int main() {
     auto compress = [&](int p) -> int {
       return int(lower_bound(ps.begin(), ps.end(), p) - ps.begin());
     };
+    
 
     //dsu = DSU(n);
     for (Edge& e : es) {
